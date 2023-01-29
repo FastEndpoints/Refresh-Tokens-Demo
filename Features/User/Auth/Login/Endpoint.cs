@@ -2,7 +2,7 @@
 
 namespace User.Auth.Login;
 
-public class Endpoint : Endpoint<Request, TokenResponse>
+public class Endpoint : Endpoint<Request, MyTokenResponse>
 {
     public override void Configure()
     {

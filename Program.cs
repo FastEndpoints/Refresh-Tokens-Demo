@@ -5,7 +5,7 @@ using MongoDB.Entities;
 
 var builder = WebApplication.CreateBuilder();
 builder.Services.AddFastEndpoints();
-builder.Services.AddAuthenticationJWTBearer(builder.Configuration["JWTSigningKey"]!);
+builder.Services.AddJWTBearerAuth(builder.Configuration["JWTSigningKey"]!);
 builder.Services.AddSwaggerDoc(tagIndex: 2);
 
 var app = builder.Build();

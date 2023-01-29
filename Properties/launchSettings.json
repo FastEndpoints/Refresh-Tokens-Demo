@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Refresh-Tokens-Demo": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51563;http://localhost:51564"
+    }
+  }
+}

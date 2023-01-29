@@ -1,6 +1,6 @@
 ﻿namespace User.Auth.RefreshToken;
 
-public class UserTokenService : RefreshTokenService<TokenRequest, TokenResponse>
+public class UserTokenService : RefreshTokenService<TokenRequest, MyTokenResponse>
 {
     public UserTokenService(IConfiguration config)
     {
@@ -16,7 +16,7 @@ public class UserTokenService : RefreshTokenService<TokenRequest, TokenResponse>
         });
     }
 
-    public override Task PersistTokenAsync(TokenResponse rsp)
+    public override Task PersistTokenAsync(MyTokenResponse rsp)
     {
         return Data.StoreToken(rsp.UserId, rsp.RefreshExpiry, rsp.RefreshToken);
     }
@@ -27,10 +27,10 @@ public class UserTokenService : RefreshTokenService<TokenRequest, TokenResponse>
             AddError("The refresh token is not valid!");
     }
 
-    public override Task SetRenewalPrivilegesAsync(TokenRequest request, UserPrivileges privileges)
+    public override async Task SetRenewalPrivilegesAsync(TokenRequest request, UserPrivileges privileges)
     {
+        await Task.Delay(100); //simulate a db call
         privileges.Claims.Add(new("UserID", request.UserId));
         privileges.Permissions.AddRange(new Allow().AllCodes());
-        return Task.CompletedTask;
     }
 }
