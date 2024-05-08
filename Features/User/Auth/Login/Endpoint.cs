@@ -14,7 +14,7 @@ public class Endpoint : Endpoint<Request, MyTokenResponse>
     {
         var userID = await Data.GetUserID(r.Email, r.Password);
 
-        if (string.IsNullOrEmpty(userID))
+        if (userID is null)
             ThrowError("Invalid user credentials!");
 
         Response = await CreateTokenWith<UserTokenService>(userID, p =>

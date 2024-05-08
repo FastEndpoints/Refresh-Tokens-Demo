@@ -1,9 +1,11 @@
-﻿namespace User.Auth
+﻿using System.Globalization;
+
+namespace User.Auth
 {
     public class MyTokenResponse : TokenResponse
     {
         //ideally should be using something like nodatime to convert to the local time zone of the client app
-        public string AccessTokenExpiry => AccessExpiry.ToLocalTime().ToString();
+        public string AccessTokenExpiry => AccessExpiry.ToLocalTime().ToString(CultureInfo.InvariantCulture);
 
         public int RefreshTokenValidityMinutes => (int)RefreshExpiry.Subtract(DateTime.UtcNow).TotalMinutes;
 

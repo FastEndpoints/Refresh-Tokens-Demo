@@ -15,12 +15,8 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
         var user = await Data.GetUser(r.UserID);
 
         if (user is null)
-        {
             await SendNotFoundAsync();
-        }
         else
-        {
             await SendAsync(Map.FromEntity(user));
-        }
     }
 }

@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="5.7.0" />
-    <PackageReference Include="FastEndpoints.Security" Version="5.7.0" />
-    <PackageReference Include="FastEndpoints.Swagger" Version="5.7.0" />
-    <PackageReference Include="MongoDB.Entities" Version="21.0.1" />
+    <PackageReference Include="FastEndpoints" Version="5.25.0" />
+    <PackageReference Include="FastEndpoints.Security" Version="5.25.0" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0" />
+    <PackageReference Include="MongoDB.Entities" Version="23.1.0" />
   </ItemGroup>
 
 </Project>

@@ -3,17 +3,19 @@ global using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using MongoDB.Entities;
 
-var builder = WebApplication.CreateBuilder();
-builder.Services.AddFastEndpoints();
-builder.Services.AddJWTBearerAuth(builder.Configuration["JWTSigningKey"]!);
-builder.Services.AddSwaggerDoc(tagIndex: 2);
+var bld = WebApplication.CreateBuilder();
+bld.Services
+   .AddAuthenticationJwtBearer(o=>o.SigningKey = bld.Configuration["JWTSigningKey"])
+   .AddAuthorization()
+   .AddFastEndpoints()
+   .SwaggerDocument(o=>o.AutoTagPathSegmentIndex = 2);
 
-var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseFastEndpoints();
-app.UseSwaggerGen();
+var app = bld.Build();
+app.UseAuthentication()
+   .UseAuthorization()
+   .UseFastEndpoints()
+   .UseSwaggerGen();
 
-await DB.InitAsync(app.Configuration["MongoAddress"]);
+await DB.InitAsync(app.Configuration["MongoAddress"] ?? "localhost");
 
 app.Run();

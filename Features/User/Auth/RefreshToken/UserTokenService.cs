@@ -17,9 +17,7 @@ public class UserTokenService : RefreshTokenService<TokenRequest, MyTokenRespons
     }
 
     public override Task PersistTokenAsync(MyTokenResponse rsp)
-    {
-        return Data.StoreToken(rsp.UserId, rsp.RefreshExpiry, rsp.RefreshToken);
-    }
+        => Data.StoreToken(rsp.UserId, rsp.RefreshExpiry, rsp.RefreshToken);
 
     public override async Task RefreshRequestValidationAsync(TokenRequest req)
     {
